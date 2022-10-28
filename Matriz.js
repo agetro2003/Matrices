@@ -209,18 +209,25 @@ invert(){
     x.create(this.rows, this.columns, 1)
    let y = JSON.parse(JSON.stringify(this.main))
         for (let i = 0; i < this.rows; i++) {
-let div = y[i][i]
+            if (y[i][i] != 1) {
+ let div = y[i][i]
             for (let j = 0; j < this.columns; j++) {
                y[i][j]/=div 
              x.main[i][j]/=div  
+            }               
             }
+
             for (let k = 0; k < this.rows; k++) {
-                if (i != k) {
-        let n = y[k][i]
+                if (i != k &&  y[k][i] != 0 ) {
+
+                   
+                     let n = y[k][i]
                     for (let j = 0; j < this.columns; j++) {
                         y[k][j] -= (n*y[i][j]) 
                         x.main[k][j] -= (n*x.main[i][j])
-                    }
+                    }   
+                    
+        
                 }
             }
         }
